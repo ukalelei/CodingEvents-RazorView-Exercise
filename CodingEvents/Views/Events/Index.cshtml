@@ -1,0 +1,22 @@
+﻿<h1>Coding Events</h1>
+<p>
+    <!--create link to form that will direct user to action method Add -->
+    <a asp-controller="Events" asp-action="Add"> Add Event</a>
+</p>
+
+@if (ViewBag.events.Count == 0)
+{
+    <p>No events yet!</p>
+}
+else
+{
+    //loop over the list and display the name of each event
+    <ul>
+        @foreach(string meeting in ViewBag.events)
+                {
+                    <li>@meeting</li>
+                }
+    </ul>            
+
+}
+
