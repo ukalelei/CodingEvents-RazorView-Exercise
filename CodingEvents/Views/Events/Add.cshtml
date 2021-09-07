@@ -1,6 +1,10 @@
 ﻿<h1>Add Event</h1>
 
-<form method="post"> <!--POST-->
-    <input name="name" type="text" />
+<form method="post">
+    <!--POST-->
+    <label for="name">Name</label><br />
+    <input name="name" type="text" /><br />
+    <label for=" description">Description</label><br />
+    <input name="description" type="text" /> <br />
     <input type="submit" value="Add Event" /> <!--method needs to be added to controller using HttpPost in order for form submit to work-->
 </form>
