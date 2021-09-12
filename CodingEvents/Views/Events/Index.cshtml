@@ -1,7 +1,7 @@
 ﻿<h1>Coding Events</h1>
-<p>
     <!--create link to form that will direct user to action method Add -->
-    <a asp-controller="Events" asp-action="Add"> Add Event</a>
+<p>
+    <a asp-controller="Events" asp-action="Add">Add Event</a>
 </p>
 
 @if (ViewBag.events.Count == 0)
@@ -10,21 +10,26 @@
 }
 else
 {
-
-<table>
-    <tr>
-        <th>Event Name</th>
-        <th>Description</th>
-    </tr>
-    @foreach (KeyValuePair<string, string> meeting in ViewBag.events)
-    {
+    <table class="table">
         <tr>
-            <td>@meeting.Key</td>
-            <td>@meeting.Value</td>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
         </tr>
-    }
-
+        @foreach (var evt in ViewBag.events)
+        {
+    <tr>
+        <td>@evt.Id</td>
+        <td>@evt.Name</td>
+        <td>@evt.Description</td>
+    </tr>
+        }
     </table>
-
 }
 
