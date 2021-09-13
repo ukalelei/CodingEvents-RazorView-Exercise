@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using CodingEventsDemo.Models;
 
@@ -9,7 +9,7 @@ namespace CodingEvents.Data
         // store events
         private static Dictionary<int, Event> Events = new Dictionary<int, Event>();
 
-        //add events
+        //add events﻿
         public static void Add(Event newEvent)
         {
             Events.Add(newEvent.Id, newEvent);
@@ -21,16 +21,16 @@ namespace CodingEvents.Data
             return Events.Values;
         }
 
-        //retrieve a single event
-        public static Event GetById(int id)
-        {
-            return Events[id];
-        }
-
-        //remove an event
+        //remove event
         public static void Remove(int id)
         {
             Events.Remove(id);
+        }
+
+        // GetById
+        public static Event GetById(int id)
+        {
+            return Events[id];
         }
        
     }
