@@ -19,9 +19,6 @@ namespace CodingEventsDemo.Models
 
             Id = nextId; // The only place id’s value may be assigned is in a constructor
             nextId++; //every time Event is created, it will increment nextId
-
-            Id = nextId;
-            nextId++;
         }
 
         public override string ToString()
