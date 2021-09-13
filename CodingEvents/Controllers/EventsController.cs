@@ -32,10 +32,10 @@ namespace CodingEvents.Controllers
         //Route /Events/Add
         [HttpPost]
         [Route("/Events/Add")]
-        public IActionResult NewEvent(string name, string description) //this method handles form submission
+        public IActionResult NewEvent(Event newEvent) //model instance is created on form submission
         {
 
-            EventData.Add(new Event(name, description)); 
+            EventData.Add(newEvent); 
             return Redirect("/Events");             
         }
 

@@ -11,14 +11,17 @@ namespace CodingEventsDemo.Models
         public int Id { get; }
         static private int nextId = 1;
 
+        public Event()
+        {
+            Id = nextId; // The only place id’s value may be assigned is in a constructor
+            nextId++; //every time Event is created, it will increment nextId
+        }
 
-        public Event(string name, string description)
+
+        public Event(string name, string description): this() //constructor chaining
         {
             Name = name;
             Description = description;
-
-            Id = nextId; // The only place id’s value may be assigned is in a constructor
-            nextId++; //every time Event is created, it will increment nextId
         }
 
         public override string ToString()
