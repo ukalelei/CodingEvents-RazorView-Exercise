@@ -1,34 +1,44 @@
-﻿<h1>Coding Events</h1>
+﻿@using CodingEventsDemo.Models @*import model ensure this template has access to Event type *@
+
+<!--that calls model will be type List<Event>-->
+ @model List<Event>
+
+
+    <h1>Coding Events</h1>
     <!--create link to form that will direct user to action method Add -->
-<p>
-    <a asp-controller="Events" asp-action="Add">Add Event</a>
-</p>
+    <p>
+        <a asp-controller="Events" asp-action="Add">Add Event</a>
+    </p>
 
-<p>
-    <a asp-controller="Events" asp-action="Delete">Delete Event</a>
-</p>
+    <p>
+        <a asp-controller="Events" asp-action="Delete">Delete Event</a>
+    </p>
 
 
-@if (ViewBag.events.Count == 0)
-{
-    <p>No events yet!</p>
-}
-else
-{
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    @foreach (var evt in ViewBag.events)
+    @if (Model.Count == 0)
     {
-        <tr>
-            <td>@evt.Id</td>
-            <td>@evt.Name</td>
-            <td>@evt.Description</td>
-        </tr>
+        <p>No events yet!</p>
     }
- </table>
-}
+    else
+    {
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Contact Email</th>
+            </tr>
+            @foreach (var evt in Model)
+            {
+                <tr>
+                    <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.Id">Edit Event</a></td>
+                    <td>@evt.Id</td>
+                    <td>@evt.Name</td>
+                    <td>@evt.Description</td>
+                    <td>@evt.ContactEmail</td>
+                </tr>
+            }
+        </table>
+    }
 
