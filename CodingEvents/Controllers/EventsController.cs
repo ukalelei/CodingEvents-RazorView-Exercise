@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CodingEventsDemo.Models;
 using CodingEvents.Data;
 using CodingEvents.ViewModels;
+using System.Numerics;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,7 +40,10 @@ namespace CodingEvents.Controllers
                 {
                     Name = addEventViewModel.Name,
                     Description = addEventViewModel.Description,
-                    ContactEmail = addEventViewModel.ContactEmail
+                    ContactEmail = addEventViewModel.ContactEmail,
+                    EventLocation = addEventViewModel.EventLocation,
+                    NumberOfAttendees = Int32.Parse(addEventViewModel.NumberOfAttendees)
+
                 };
 
                 EventData.Add(newEvent); //Add() is called with newEvent and newEvent is saved
