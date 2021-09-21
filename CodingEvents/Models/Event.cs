@@ -7,6 +7,8 @@ namespace CodingEventsDemo.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string ContactEmail{ get; set; }
+        public string EventLocation { get; set; }
+        public int NumberOfAttendees { get; set; }
 
 
         public int Id { get; }
@@ -19,11 +21,13 @@ namespace CodingEventsDemo.Models
         }
 
 
-        public Event(string name, string description, string contactEmail): this() //constructor chaining
+        public Event(string name, string description, string contactEmail, string eventLocation, int numberOfAttendees) : this() //constructor chaining
         {
             Name = name;
             Description = description;
             ContactEmail = contactEmail;
+            EventLocation = eventLocation;
+            NumberOfAttendees = numberOfAttendees;
         }
 
         public override string ToString()
