@@ -6,8 +6,8 @@
 
 <h1>Add Event</h1>
 
-<form method="post">
-    <div asp-controller="Events" asp-action="Add" class="form-group">
+<form method="post" asp-controller="Events" asp-action="Add">
+    <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" type="text" class="form-control" />
         <!--specify which property’s validation error messages should be displayed if the conditions are not met.-->
@@ -23,5 +23,16 @@
         <input asp-for="ContactEmail" type="text" class="form-control" />
         <span asp-validation-for="ContactEmail"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="EventLocation"></label>
+        <input asp-for="EventLocation" type="text" class="form-control" />
+        <span asp-validation-for="EventLocation"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfAttendees">Number of Attendees</label>
+        <input asp-for="NumberOfAttendees" type="text" class="form-control" />
+        <span asp-validation-for="NumberOfAttendees"></span>
+    </div>
+
     <input type="submit" value="Add Event" />
 </form>
