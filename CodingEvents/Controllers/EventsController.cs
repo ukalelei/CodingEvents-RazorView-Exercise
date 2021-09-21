@@ -72,13 +72,13 @@ namespace CodingEvents.Controllers
             return Redirect("/Events"); // return to homepage once Id is removed
         }
 
-
         [HttpGet]
         [Route("/Events/Edit/{eventId}")]
         public IActionResult Edit(int eventId)
         {
-            
-            ViewBag.title = "Edit Event NAME (id=ID)";
+            ViewBag.eventToEdit = EventData.GetById(eventId);
+            ViewBag.title = "Edit Event" + ViewBag.eventToEdit.Name + "(ID:" + ViewBag.eventToEdit.Id
+                + ")";
             return View();
         }
 
@@ -87,11 +87,10 @@ namespace CodingEvents.Controllers
         public IActionResult SubmitEditEventForm(int eventId, string name, string description)
         {
             ViewBag.eventToEdit = EventData.GetById(eventId);
-            ViewBag.newName = name;
-            ViewBag.newDescription = description;
+            ViewBag.eventToEdit.Name = name;
+            ViewBag.eventToEdit.Description = description;
 
             return Redirect("/Events");
         }
-         
     }
 }
