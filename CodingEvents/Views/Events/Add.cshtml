@@ -33,6 +33,14 @@
         <input asp-for="NumberOfAttendees" type="text" class="form-control" />
         <span asp-validation-for="NumberOfAttendees"></span>
     </div>
+    <!--Use Enum Value in a select Element¶-->
+    <div class="form-group">
+        <label asp-for="Type">Event Type</label>
+        <!--asp-items access all items stored in list of diff enum values-->
+        <select asp-for="Type" asp-items="Model.EventTypes"></select>
+    </div>
 
     <input type="submit" value="Add Event" />
+
+
 </form>
