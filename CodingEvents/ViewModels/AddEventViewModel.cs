@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CodingEvents.Mode;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CodingEvents.ViewModels
 {
@@ -27,6 +30,19 @@ namespace CodingEvents.ViewModels
         [Range(0, 100000, ErrorMessage = "Cannot exeed 100000 attendees")]
         public string NumberOfAttendees { get; set; }
 
-        
+        // add an EventType property to our ViewModel to hold the event type that the user selects
+        public EventType Type { get; set; }
+
+        //list of all of the possible event types. Use for populating the select element
+        //SelectListItem is an ASP.NET-provided class that represents each <option> element in a <select> element
+        //This list only exists in AddEventViewModel cause we only need it for the purposes of displaying all of the options
+        public List<SelectListItem> EventTypes { get; set; } = new List<SelectListItem>
+        {
+            //populate property with default value since EventType options are not gonna change
+            new SelectListItem(EventType.Conference.ToString(), ((int)EventType.Conference).ToString()),
+            new SelectListItem(EventType.Meetup.ToString(),((int)EventType.Meetup).ToString()),
+            new SelectListItem(EventType.Social.ToString(),((int)EventType.Social).ToString()),
+            new SelectListItem(EventType.Workshop.ToString(),((int)EventType.Workshop).ToString()),
+        };
     }
 }
