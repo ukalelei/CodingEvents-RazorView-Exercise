@@ -42,7 +42,8 @@ namespace CodingEvents.Controllers
                     Description = addEventViewModel.Description,
                     ContactEmail = addEventViewModel.ContactEmail,
                     EventLocation = addEventViewModel.EventLocation,
-                    NumberOfAttendees = Int32.Parse(addEventViewModel.NumberOfAttendees)
+                    NumberOfAttendees = Int32.Parse(addEventViewModel.NumberOfAttendees),
+                    Type = addEventViewModel.Type //Pass Enum Values Through the Controller
 
                 };
 
@@ -94,3 +95,4 @@ namespace CodingEvents.Controllers
         }
     }
 }
+
