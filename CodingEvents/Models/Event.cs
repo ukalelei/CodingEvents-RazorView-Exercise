@@ -1,4 +1,5 @@
 ﻿using System;
+using CodingEvents.Mode;
 
 namespace CodingEventsDemo.Models
 {
@@ -9,6 +10,9 @@ namespace CodingEventsDemo.Models
         public string ContactEmail{ get; set; }
         public string EventLocation { get; set; }
         public int NumberOfAttendees { get; set; }
+
+        //Add an Enum Property to a Model Class
+        public EventType Type { get; set; } 
 
 
         public int Id { get; }
@@ -47,5 +51,6 @@ namespace CodingEventsDemo.Models
         {
             return HashCode.Combine(Id);
         }
+
     }
 }
