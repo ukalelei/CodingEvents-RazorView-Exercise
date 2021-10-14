@@ -45,9 +45,9 @@ namespace CodingEvents.Controllers
 
                 context.EventCategories.Add(newCategory); //add to database if form input meets the validation conditions
                 context.SaveChanges(); //save changes to database
-                return Redirect("/EventCategory/Index");
+                return Redirect("/EventCategory");
             }
-            return View("Create");
+            return View("Create", addEventCategoryViewModel);
         }
 
 
