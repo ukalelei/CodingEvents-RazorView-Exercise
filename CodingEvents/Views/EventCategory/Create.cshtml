@@ -1,0 +1,16 @@
+﻿@using CodingEvents.ViewModels;
+
+<!--pass in instance of model-->
+@model AddEventCategoryViewModel;
+
+<h1>Add Category</h1>
+
+<form method="post" asp-controller="EventCategory" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <!--specify which property’s validation error messages should be displayed if the conditions are not met.-->
+        <span asp-validation-for="Name"></span>
+    </div>
+    <input type="submit" value="Add Category" />
+</form>
