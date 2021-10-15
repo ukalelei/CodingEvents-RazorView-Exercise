@@ -8,6 +8,7 @@ using CodingEvents.Data;
 using CodingEvents.ViewModels;
 using System.Numerics;
 using CodingEvents.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,14 +27,14 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             //List<Event> events = new List<Event>(Event.GetAll()); //store items in a list
-            List<Event> events = context.Events.ToList(); //store items in a list
+            List<Event> events = context.Events.Include(e => e.Category).ToList(); //store items in a list
             return View(events);
         }
 
         [HttpGet]
         public IActionResult Add()//If the action attribute in the <form> tag leads to the same route as the form is being rendered at, you do not have to include an action attribute.
         {
-            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            AddEventViewModel addEventViewModel = new AddEventViewModel(context.Categories.ToList()); //take a list of all EventCategory objects
             return View(addEventViewModel); //pass in new instance addEventViewModel created from above
         }
 
