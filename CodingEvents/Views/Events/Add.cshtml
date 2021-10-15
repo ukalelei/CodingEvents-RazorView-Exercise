@@ -35,9 +35,9 @@
     </div>
     <!--Use Enum Value in a select Element¶-->
     <div class="form-group">
-        <label asp-for="Type">Event Type</label>
+        <label asp-for="CategoryId">Event Type</label>
         <!--asp-items access all items stored in list of diff enum values-->
-        <select asp-for="Type" asp-items="Model.EventTypes"></select>
+        <select asp-for="CategoryId" asp-items="Model.Categories"></select>
     </div>
 
     <input type="submit" value="Add Event" />

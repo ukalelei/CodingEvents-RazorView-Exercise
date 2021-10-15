@@ -1,5 +1,5 @@
 ﻿using System;
-using CodingEvents.Mode;
+using CodingEvents.Models;
 
 namespace CodingEventsDemo.Models
 {
@@ -12,7 +12,9 @@ namespace CodingEventsDemo.Models
         public int NumberOfAttendees { get; set; }
 
         //Add an Enum Property to a Model Class
-        public EventType Type { get; set; }
+        //public EventType Type { get; set; } replacing this with new property to persist relationships between event and eventcategory objects
+        public EventCategory Category { get; set; } //each event can only one eventCategory (1 to many)
+        public int CategoryId { get; set; }//foreign key
 
         public int Id { get; set; }
 

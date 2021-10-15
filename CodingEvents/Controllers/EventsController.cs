@@ -7,6 +7,7 @@ using CodingEventsDemo.Models;
 using CodingEvents.Data;
 using CodingEvents.ViewModels;
 using System.Numerics;
+using CodingEvents.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,6 +44,7 @@ namespace CodingEvents.Controllers
         {
             if (ModelState.IsValid) //ModelState.IsValid check if the constraints on the model properties are met
             {
+                EventCategory category = context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name,
@@ -50,8 +52,7 @@ namespace CodingEvents.Controllers
                     ContactEmail = addEventViewModel.ContactEmail,
                     EventLocation = addEventViewModel.EventLocation,
                     NumberOfAttendees = Int32.Parse(addEventViewModel.NumberOfAttendees),
-                    Type = addEventViewModel.Type //Pass Enum Values Through the Controller
-
+                    Category = category
                 };
 
                 //EventData.Add(newEvent); //Add() is called with newEvent and newEvent is saved
