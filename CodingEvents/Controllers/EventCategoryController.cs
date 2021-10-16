@@ -20,7 +20,7 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             //Pass DbContext category values as a list into the view template as a model
-            List<EventCategory> categories = context.EventCategories.ToList();
+            List<EventCategory> categories = context.Categories.ToList();
             return View(categories);
         }
 
@@ -43,7 +43,7 @@ namespace CodingEvents.Controllers
                     Name = addEventCategoryViewModel.Name
                 };
 
-                context.EventCategories.Add(newCategory); //add to database if form input meets the validation conditions
+                context.Categories.Add(newCategory); //add to database if form input meets the validation conditions
                 context.SaveChanges(); //save changes to database
                 return Redirect("/EventCategory");
             }
