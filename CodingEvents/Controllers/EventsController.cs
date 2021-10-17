@@ -112,6 +112,17 @@ namespace CodingEvents.Controllers
 
             return Redirect("/Events");
         }
+
+        //Events/Detail/id
+        public IActionResult Detail(int id) //path parameter
+        {
+            Event theEvent = context.Events
+               .Include(e => e.Category)
+               .Single(e => e.Id == id); //using Single instead of Find here cause Include cant be chained with Find
+
+            EventDetailViewModel viewModel = new EventDetailViewModel(theEvent);
+            return View(viewModel);
+        }
     }
 }
 
