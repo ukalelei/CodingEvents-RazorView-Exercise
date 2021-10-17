@@ -37,7 +37,7 @@
                 <tr>
                     <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.Id">Edit Event</a></td>
                     <td>@evt.Id</td>
-                    <td>@evt.Name</td>
+                    <td><a asp-controller="Events" asp-action="Detail" asp-route-id="@evt.Id">@evt.Name</a></td>
                     <td>@evt.Description</td>
                     <td>@evt.ContactEmail</td>
                     <td>@evt.EventLocation</td>
