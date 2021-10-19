@@ -120,9 +120,18 @@ namespace CodingEvents.Controllers
                .Include(e => e.Category)
                .Single(e => e.Id == id); //using Single instead of Find here cause Include cant be chained with Find
 
-            EventDetailViewModel viewModel = new EventDetailViewModel(theEvent);
+            //pass in tag associate with an event
+            //query database for al events tagged record that correspondm to event with specific id
+            List<EventTag> eventTags = context.EventTags //result = query 
+                .Where(et => et.EventId == id) //Filters the EventTags set to include only objects related to the given Event
+                .Include(et => et.Tag)// Forces eager loading of the Tag property of those EventTag objects.
+                   .ToList(); // Converts the DbSet to a list
+
+             EventDetailViewModel viewModel = new EventDetailViewModel(theEvent, eventTags);
             return View(viewModel);
         }
+
+
     }
 }
 
