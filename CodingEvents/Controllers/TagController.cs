@@ -4,6 +4,7 @@ using System.Linq;
 using CodingEvents.Data;
 using CodingEvents.Models;
 using CodingEvents.ViewModels;
+using CodingEventsDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodingEvents.Controllers
@@ -49,6 +50,38 @@ namespace CodingEvents.Controllers
                 return Redirect("/Tag");
             }
             return View("Create", addTagViewModel);
+        }
+
+        [HttpGet]// responds to URLs like /Tag/AddEvent/5 (where 5 is an event ID)
+        public IActionResult AddEvent(int id) 
+        {
+            Event theEvent = context.Events.Find(id);
+            List<Tag> possibleTags = context.Tags.ToList();
+            AddEventTagViewModel viewModel = new AddEventTagViewModel(theEvent, possibleTags);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddEvent(AddEventTagViewModel viewModel) //takes in a AddEventTagViewModel object which will be created via model binding.
+        {
+            if (ModelState.IsValid)
+            {
+
+                int eventId = viewModel.EventId;
+                int tagId = viewModel.TagId;
+
+                EventTag eventTag = new EventTag
+                {
+                    EventId = eventId,
+                    TagId = tagId
+                };
+                context.EventTags.Add(eventTag);
+                context.SaveChanges(); //if validation pass, save new EventTag object to database
+
+                return Redirect("/Events/Detail/" + eventId);
+            }
+
+            return View(viewModel);
         }
 
     }
