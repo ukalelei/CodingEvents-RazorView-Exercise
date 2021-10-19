@@ -70,14 +70,21 @@ namespace CodingEvents.Controllers
                 int eventId = viewModel.EventId;
                 int tagId = viewModel.TagId;
 
-                EventTag eventTag = new EventTag
-                {
-                    EventId = eventId,
-                    TagId = tagId
-                };
-                context.EventTags.Add(eventTag);
-                context.SaveChanges(); //if validation pass, save new EventTag object to database
+                List<EventTag> existingItems = context.EventTags // query for existing EventTag objects that have the some EventId/TagId pair
+                   .Where(et => et.EventId == eventId)
+                   .Where(et => et.TagId == tagId)
+                   .ToList();
 
+                if (existingItems.Count == 0) //create and save a new EventTag object is skipped if event already has the tag
+                {
+                    EventTag eventTag = new EventTag
+                    {
+                        EventId = eventId,
+                        TagId = tagId
+                    };
+                    context.EventTags.Add(eventTag);
+                    context.SaveChanges(); //if validation pass, save new EventTag object to database
+                }
                 return Redirect("/Events/Detail/" + eventId);
             }
 
@@ -85,6 +92,4 @@ namespace CodingEvents.Controllers
         }
 
     }
-
-
 }
