@@ -114,6 +114,7 @@ namespace CodingEvents.Controllers
         }
 
         //Events/Detail/id
+        [HttpGet]
         public IActionResult Detail(int id) //path parameter
         {
             Event theEvent = context.Events

@@ -6,6 +6,7 @@ using CodingEvents.Models;
 using CodingEvents.ViewModels;
 using CodingEventsDemo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEvents.Controllers
 {
@@ -91,5 +92,16 @@ namespace CodingEvents.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            List<EventTag> eventTags = context.EventTags
+                  .Where(et => et.TagId == id) // Filters the collection of all EventTag objects down to just those with the given TagId.
+                  .Include(et => et.Event) //Eager loads the Event child object
+                  .Include(et => et.Tag) // Eager loads the Tag child object.
+                  .ToList(); //Converst DbSet to a list
+
+            return View(eventTags);
+        }
     }
 }

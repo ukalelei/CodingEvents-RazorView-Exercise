@@ -12,16 +12,19 @@
 }
 else
 {
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Tag Name</th>
+    </tr>
+    @foreach (Tag tag in Model)
+    {
         <tr>
-            <th>Name</th>
+            <td>@tag.Id</td>
+            <td><a asp-controller="Tag" asp-action="Detail" asp-route-id="@tag.Id">@tag.Name</a></td>
         </tr>
-        @foreach (Tag tag in Model)
-        {
-            <tr>
-                <td>@tag.Name</td>
-            </tr>
-        }
-    </table>
+    }
+
+</table>
 
 }
