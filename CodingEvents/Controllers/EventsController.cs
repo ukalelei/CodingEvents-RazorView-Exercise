@@ -9,11 +9,13 @@ using CodingEvents.ViewModels;
 using System.Numerics;
 using CodingEvents.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CodingEvents.Controllers
 {
+    [Authorize]//use identitly to limit who can add, edit or delete event
     public class EventsController : Controller
     {
         private EventDbContext context;
@@ -22,8 +24,8 @@ namespace CodingEvents.Controllers
             context = dbContext;
         }
 
-        // GET: /<controller>/
-        [HttpGet] //index only respond to get request
+        [AllowAnonymous] //allow all users ablity to view events
+        [HttpGet] // GET: /<controller>/
         public IActionResult Index()
         {
             //List<Event> events = new List<Event>(Event.GetAll()); //store items in a list
