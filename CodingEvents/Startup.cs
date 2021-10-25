@@ -6,6 +6,7 @@ using CodingEvents.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,11 @@ namespace CodingEvents
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 10;
+                });
+
             /*services.AddDbContext<EventDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 26))));*/
         }
@@ -49,6 +55,8 @@ namespace CodingEvents
 
             app.UseRouting();
 
+            //need authentication middleware to handle these requests
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
